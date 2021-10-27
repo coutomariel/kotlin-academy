@@ -1,69 +1,39 @@
+import accounts.CurrentAccount
+import employees.Manager
+
 fun main() {
-    println("Bem vindo ao bytebank!")
+    println("Welcome to Bitebank")
 
-    /**
-     * - Enviroments given define like val or var
-     * - Support typed assignement for inference, however allow force typed assignement
-     */
 
-    val owner = "Mariel" //val owner: String = "Mariel"
-    val accountNumber = 10000 // val accountNumber: Int = 10000
-    var balance = 100.00 //var balance: Double = 0.00
-    balance += 20
 
-    /**
-     * Support to use template strings
-     */
-    println("\nOwner: $owner") //println("Titular:" + titular)
-    println("Account: $accountNumber")
-    println("Balance: $balance")
-
-//    testConditionalsOne(balance)
-//    testConditionalsTwo(balance)
-//    repeatedPrintPhraseUsingFor("Yes, we can because i believe.")
-    repeatedPrintPhraseUsingWhile("Yes, we can. Using while for five iterations")
+//    testResourcesBytebank()
+//    TestEmployesResources()
 
 
 }
 
-/**
- * Flow control using if, else if or else
- */
+private fun TestEmployesResources() {
+    val mariel = Manager(name = "Mariel", cpf = "001", salary = 1045.0, senha = "1234")
+    println("Name: ${mariel.name}")
+    println("Cpf: ${mariel.cpf}")
+    println("Salary: ${mariel.salary}")
+    println("Bonus: ${mariel.bonus}")
 
-fun testConditionalsOne(balance: Double) {
-    if (balance > 0.00) {
-        println("Is positive balance account")
-    } else if (balance == 0.00) {
-        println("Is neutral balance account")
-    } else {
-        println("Account is negative")
-    }
+    val manager = Manager(name = "Patricia", cpf = "005", salary = 5000.00, senha = "1234")
 }
 
-/**
- * Flow control with when expression
- */
-fun testConditionalsTwo(balance: Double) {
-    when {
-        balance > 0.00 -> println("Is positive balance account")
-        balance == 0.00 -> println("Is neutral balance account")
-        else -> println("Is neutral balance account")
-    }
+private fun testResourcesBytebank() {
+
+    // Use labels for initialize objects is a goob practice
+    val contaMariel = CurrentAccount(owner = "Mariel", numberAccount = 1001)
+    println("Owner:  ${contaMariel.owner}")
+
+    val contaJulia = CurrentAccount("julia", 1002)
+    contaJulia.deposit(100.0)
+    println("Balance account of Julia: ${contaJulia.balance}")
+
+    println("Depositing 50 to Julia's account")
+    contaJulia.deposit(50.0)
+    println("Balance account of Julia: ${contaJulia.balance}")
 }
 
-/**
- * Use loops in kotlin
- */
-fun repeatedPrintPhraseUsingFor(phrase : String){
-    for(i in 5 downTo  1){ // for(i in 1..5){
-        println(phrase)
-    }
-}
-
-fun repeatedPrintPhraseUsingWhile(phrase : String){
-    var iterator = 0
-    while (iterator < 5){
-        println(phrase)
-        iterator++
-    }
-}
